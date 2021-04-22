@@ -32,7 +32,7 @@ class InlineEditableContent extends React.Component {
         onChange={this.handleChange}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
-        style={{ display: 'inline', minWidth: '2em' }}
+        style={{ display: 'inline', minWidth: '2em', padding: '0.25em' }}
       />
     );
   };

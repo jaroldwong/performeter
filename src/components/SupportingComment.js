@@ -21,8 +21,8 @@ const SupportingComment = (props) => {
   return (
     <div className="box">
       <p style={{ display: 'block' }}>
-        In the competency of
-        <div className="select">
+        In the competency of{' '}
+        <div className="select is-small">
           <select defaultValue={props.competency}>
             {coreCompetencies.map((competency) => (
               <option value={competency} key={competency}>

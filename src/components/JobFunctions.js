@@ -8,10 +8,13 @@ const JobFunctions = (props) => {
     <div>
       <div className="box">
         <h2 className="subtitle">Job Function</h2>
+        <progress className="progress is-success" value="3" max="7">
+          0%
+        </progress>
         <div className="field">
           <label className="label">Percentage</label>
           <div className="control">
-            <div className="select">
+            <div className="select is-small">
               <select>
                 <option>Select</option>
                 {percentValues.map((value) => (
