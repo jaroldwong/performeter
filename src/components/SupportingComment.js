@@ -24,12 +24,12 @@ const SupportingComment = (props) => {
       indicator: props.indicator,
       example: props.example,
     };
-    props.onChange(props.commentIndex, newComment);
+    props.updateComment(props.commentIndex, newComment);
   };
 
   return (
     <div className="box">
-      <p style={{ display: 'block' }}>
+      <div style={{ display: 'block' }}>
         In the competency of{' '}
         <div className="select is-small">
           <select defaultValue={props.competency} onChange={handleChange}>
@@ -42,7 +42,7 @@ const SupportingComment = (props) => {
         </div>
         , I <InlineEditableContent initialValue={props.indicator} />
         by <InlineEditableContent initialValue={props.example} />
-      </p>
+      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './components/Header';
 import CompetencyCounter from './components/CompetencyCounter';
 import JobFunctions from './components/JobFunctions';
+import SupportingComment from './components/SupportingComment';
 
 function App() {
   const [comments, setComment] = React.useState([]);
@@ -51,7 +52,18 @@ function App() {
               comments={comments}
               addComment={addComment}
               updateComment={updateComment}
-            />
+            >
+              {comments.map((comment, i) => (
+                <SupportingComment
+                  commentIndex={i}
+                  competency={comment.competency}
+                  indicator={comment.indicator}
+                  example={comment.example}
+                  updateComment={updateComment}
+                  key={comment.competency + i}
+                />
+              ))}
+            </JobFunctions>
           </div>
         </div>
       </section>
