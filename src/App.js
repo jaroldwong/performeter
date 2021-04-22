@@ -19,6 +19,18 @@ function App() {
     ]);
   };
 
+  const updateComment = (commentIndex, newComment) => {
+    const newState = comments.map((comment, index) => {
+      if (index === commentIndex) {
+        comment = newComment;
+      }
+
+      return comment;
+    });
+
+    setComment(newState);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -35,14 +47,11 @@ function App() {
               </button>
             </h1>
 
-            <JobFunctions comments={comments} addComment={addComment} />
-
-            {/* <h1 className="title">Achievements</h1>
-
-            <h1 className="title">Goals</h1>
-            <button className="button">Add Goal</button>
-            <div className="box">Goal #1 - Diversity, Equity, Inclusion</div>
-            <div className="box">Goal #2 - Professional Development</div> */}
+            <JobFunctions
+              comments={comments}
+              addComment={addComment}
+              updateComment={updateComment}
+            />
           </div>
         </div>
       </section>

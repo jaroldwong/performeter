@@ -8,6 +8,10 @@ const JobFunctions = (props) => {
     percent: '0%',
   });
 
+  const handleChange = (index, newComment) => {
+    props.updateComment(index, newComment);
+  };
+
   return (
     <div>
       <div className="box">
@@ -51,9 +55,11 @@ const JobFunctions = (props) => {
 
         {props.comments.map((comment, i) => (
           <SupportingComment
+            commentIndex={i}
             competency={comment.competency}
             indicator={comment.indicator}
             example={comment.example}
+            onChange={handleChange}
             key={comment.competency + i}
           />
         ))}

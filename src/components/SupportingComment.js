@@ -18,12 +18,21 @@ const SupportingComment = (props) => {
     'Managing People (Supervisors)',
   ];
 
+  const handleChange = (e) => {
+    const newComment = {
+      competency: e.target.value,
+      indicator: props.indicator,
+      example: props.example,
+    };
+    props.onChange(props.commentIndex, newComment);
+  };
+
   return (
     <div className="box">
       <p style={{ display: 'block' }}>
         In the competency of{' '}
         <div className="select is-small">
-          <select defaultValue={props.competency}>
+          <select defaultValue={props.competency} onChange={handleChange}>
             {coreCompetencies.map((competency) => (
               <option value={competency} key={competency}>
                 {competency}
