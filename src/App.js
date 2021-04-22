@@ -6,13 +6,7 @@ import CompetencyCounter from './components/CompetencyCounter';
 import JobFunctions from './components/JobFunctions';
 
 function App() {
-  const [comments, setComment] = React.useState([
-    {
-      competency: 'Communication',
-      indicator: '[behavioral indicator]',
-      example: '[specific example]',
-    },
-  ]);
+  const [comments, setComment] = React.useState([]);
 
   const addComment = (event) => {
     setComment([
