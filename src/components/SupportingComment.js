@@ -3,7 +3,6 @@ import InlineEditableContent from './InlineEditableContent';
 
 const SupportingComment = (props) => {
   const coreCompetencies = [
-    'Select',
     'Communication',
     'Decision Making',
     'Diversity, Equity, Inclusion',
@@ -33,6 +32,7 @@ const SupportingComment = (props) => {
         In the competency of{' '}
         <div className="select is-small">
           <select defaultValue={props.competency} onChange={handleChange}>
+            <option value="Select">Select One</option>
             {coreCompetencies.map((competency) => (
               <option value={competency} key={competency}>
                 {competency}
