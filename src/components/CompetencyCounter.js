@@ -31,13 +31,19 @@ const CompetencyCounter = (props) => {
         {Object.keys(competencyCount).map((key, index) => (
           <li key={`key + ${index}`} style={{ padding: '3px' }}>
             <div className="tags has-addons">
-              <span className="tag">{key}</span>
               <span
                 className={
                   'tag ' + (competencyCount[key] > 1 ? 'is-success' : '')
                 }
               >
                 {competencyCount[key]}
+              </span>
+              <span
+                className={
+                  'tag ' + (competencyCount[key] > 1 ? 'is-success' : '')
+                }
+              >
+                {key}
               </span>
             </div>
           </li>
