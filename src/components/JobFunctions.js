@@ -4,7 +4,7 @@ const JobFunctions = (props) => {
   const percentValues = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
 
   const [state, setState] = React.useState({
-    percent: '0%',
+    percent: '',
   });
 
   return (
@@ -13,7 +13,7 @@ const JobFunctions = (props) => {
         <h2 className="subtitle">Job Function</h2>
         <progress
           className="progress is-success"
-          value={props.comments.length}
+          value={isNaN(parseInt(state.percent)) ? 0 : props.comments.length}
           max={parseInt(state.percent) / 10}
         >
           0%
