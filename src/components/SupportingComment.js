@@ -23,7 +23,7 @@ const SupportingComment = (props) => {
       indicator: props.indicator,
       example: props.example,
     };
-    props.updateComment(props.commentIndex, newComment);
+    props.updateComment(newComment);
   };
 
   return (

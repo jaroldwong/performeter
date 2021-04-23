@@ -17,7 +17,7 @@ const CompetencyCounter = (props) => {
   };
 
   competencyCount = props.comments.reduce((acc, current) => {
-    if (current.competency !== 'Select') {
+    if (Object.keys(competencyCount).includes(current.competency)) {
       acc[current.competency] += 1;
     }
     return acc;

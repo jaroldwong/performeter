@@ -7,30 +7,68 @@ import JobFunctions from './components/JobFunctions';
 import SupportingComment from './components/SupportingComment';
 
 function App() {
-  const [comments, setComment] = React.useState([]);
+  const [jobFunctions, setJobFunctions] = React.useState([
+    {
+      id: 'job-function-1',
+      description: 'job function description goes here',
+      percentage: '',
+      comments: [
+        { competency: 'Communication', indicator: 'foo', example: 'bar' },
+      ],
+    },
+    {
+      id: 'job-function-2',
+      description: 'job function description goes here',
+      percentage: '',
+      comments: [{ competency: 'Teamwork', indicator: 'foo', example: 'bar' }],
+    },
+  ]);
 
-  const addComment = (event) => {
-    setComment([
-      ...comments,
-      {
-        competency: 'Select',
-        indicator: '[behavioral indicator]',
-        example: '[specific example]',
-      },
-    ]);
-  };
+  const addComment = (jobFunctionId) => {
+    const newJobFunctions = jobFunctions.map((jobFunction) => {
+      if (jobFunction.id === jobFunctionId) {
+        debugger;
+        const newComments = [
+          ...jobFunction.comments,
+          { competency: '', indicator: 'foo', example: 'bar' },
+        ];
 
-  const updateComment = (commentIndex, newComment) => {
-    const newState = comments.map((comment, index) => {
-      if (index === commentIndex) {
-        comment = newComment;
+        return { ...jobFunction, comments: newComments };
+      } else {
+        return jobFunction;
       }
-
-      return comment;
     });
 
-    setComment(newState);
+    setJobFunctions(() => newJobFunctions);
   };
+
+  const updateComment = (jobFunctionId, commentIndex, newComment) => {
+    const jobFunction = jobFunctions.find((jf) => jf.id === jobFunctionId);
+
+    const updatedComments = jobFunction.comments.map((comment, idx) => {
+      if (idx === commentIndex) {
+        return newComment;
+      } else {
+        return comment;
+      }
+    });
+
+    const newJobFunction = { ...jobFunction, comments: updatedComments };
+
+    const newJobFunctions = jobFunctions.map((jobFunction) => {
+      if (jobFunction.id === jobFunctionId) {
+        return newJobFunction;
+      } else {
+        return jobFunction;
+      }
+    });
+
+    setJobFunctions(() => newJobFunctions);
+  };
+
+  const allComments = jobFunctions
+    .map((jobFunction) => jobFunction.comments)
+    .flat();
 
   return (
     <div className="App">
@@ -38,7 +76,7 @@ function App() {
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
-            <CompetencyCounter comments={comments} />
+            <CompetencyCounter comments={allComments} />
           </div>
           <div className="column is-three-quarters">
             <h1 className="title">
@@ -48,22 +86,28 @@ function App() {
               </button>
             </h1>
 
-            <JobFunctions
-              comments={comments}
-              addComment={addComment}
-              updateComment={updateComment}
-            >
-              {comments.map((comment, i) => (
-                <SupportingComment
-                  commentIndex={i}
-                  competency={comment.competency}
-                  indicator={comment.indicator}
-                  example={comment.example}
-                  updateComment={updateComment}
-                  key={comment.competency + i}
-                />
-              ))}
-            </JobFunctions>
+            {jobFunctions.map((jobFunction) => (
+              <JobFunctions
+                id={jobFunction.id}
+                comments={jobFunction.comments}
+                key={jobFunction.id}
+                addComment={() => {
+                  addComment(jobFunction.id);
+                }}
+              >
+                {jobFunction.comments.map((comment, commentIndex) => (
+                  <SupportingComment
+                    competency={comment.competency}
+                    indicator={comment.indicator}
+                    example={comment.example}
+                    updateComment={(newComment) => {
+                      updateComment(jobFunction.id, commentIndex, newComment);
+                    }}
+                    key={comment.competency + commentIndex}
+                  />
+                ))}
+              </JobFunctions>
+            ))}
           </div>
         </div>
       </section>
