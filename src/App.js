@@ -16,12 +16,6 @@ function App() {
         { competency: 'Communication', indicator: 'foo', example: 'bar' },
       ],
     },
-    {
-      id: 'job-function-2',
-      description: 'job function description goes here',
-      percentage: '',
-      comments: [{ competency: 'Teamwork', indicator: 'foo', example: 'bar' }],
-    },
   ]);
 
   const addComment = (jobFunctionId) => {
@@ -66,6 +60,20 @@ function App() {
     setJobFunctions(() => newJobFunctions);
   };
 
+  const handleAddJobFunction = () => {
+    const incrementId = jobFunctions.length + 1;
+
+    setJobFunctions([
+      ...jobFunctions,
+      {
+        id: `job-function-${incrementId}`,
+        description: 'job function description goes here',
+        percentage: '',
+        comments: [{ competency: '', indicator: 'foo', example: 'bar' }],
+      },
+    ]);
+  };
+
   const allComments = jobFunctions
     .map((jobFunction) => jobFunction.comments)
     .flat();
@@ -81,7 +89,11 @@ function App() {
           <div className="column is-three-quarters">
             <h1 className="title">
               Job Functions
-              <button className="button" style={{ marginLeft: '1em' }}>
+              <button
+                className="button"
+                style={{ marginLeft: '1em' }}
+                onClick={handleAddJobFunction}
+              >
                 Add Job Function
               </button>
             </h1>
