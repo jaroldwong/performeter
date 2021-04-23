@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const JobFunctions = (props) => {
   const percentValues = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
