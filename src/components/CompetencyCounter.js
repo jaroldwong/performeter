@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CompetencyCounter = (props) => {
+const CompetencyCounter = ({ comments }) => {
   let competencyCount = {
     Communication: 0,
     'Decision Making': 0,
@@ -16,7 +16,7 @@ const CompetencyCounter = (props) => {
     'Managing People (Supervisors)': 0,
   };
 
-  competencyCount = props.comments.reduce((acc, current) => {
+  competencyCount = comments.reduce((acc, current) => {
     if (Object.keys(competencyCount).includes(current.competency)) {
       acc[current.competency] += 1;
     }

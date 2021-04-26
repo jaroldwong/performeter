@@ -1,7 +1,12 @@
 import React from 'react';
 import InlineEditableContent from './InlineEditableContent';
 
-const SupportingComment = (props) => {
+const SupportingComment = ({
+  competency,
+  indicator,
+  example,
+  updateComment,
+}) => {
   const coreCompetencies = [
     'Communication',
     'Decision Making',
@@ -20,10 +25,10 @@ const SupportingComment = (props) => {
   const handleChange = (e) => {
     const newComment = {
       competency: e.target.value,
-      indicator: props.indicator,
-      example: props.example,
+      indicator: indicator,
+      example: example,
     };
-    props.updateComment(newComment);
+    updateComment(newComment);
   };
 
   return (
@@ -31,7 +36,7 @@ const SupportingComment = (props) => {
       <div style={{ display: 'block' }}>
         In the competency of{' '}
         <div className="select is-small">
-          <select defaultValue={props.competency} onChange={handleChange}>
+          <select defaultValue={competency} onChange={handleChange}>
             <option value="Select">Select One</option>
             {coreCompetencies.map((competency) => (
               <option value={competency} key={competency}>
@@ -40,8 +45,8 @@ const SupportingComment = (props) => {
             ))}
           </select>
         </div>
-        , I <InlineEditableContent initialValue={props.indicator} />
-        by <InlineEditableContent initialValue={props.example} />
+        , I <InlineEditableContent initialValue={indicator} />
+        by <InlineEditableContent initialValue={example} />
       </div>
     </div>
   );
