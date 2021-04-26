@@ -11,9 +11,14 @@ const Header = (props) => (
     <div className="navbar-menu">
       <div className="navbar-end">
         <div className="navbar-item">
-          <button className="button" onClick={props.export}>
-            Export as Plain Text
-          </button>
+          <div class="buttons">
+            <button className="button is-danger" onClick={props.reset}>
+              Reset
+            </button>
+            <button className="button" onClick={props.export}>
+              Export as Plain Text
+            </button>
+          </div>
         </div>
       </div>
     </div>

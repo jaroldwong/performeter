@@ -1,22 +1,22 @@
 import './App.css';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import CompetencyCounter from './components/CompetencyCounter';
 import JobFunctions from './components/JobFunctions';
 import SupportingComment from './components/SupportingComment';
 
 function App() {
-  const [jobFunctions, setJobFunctions] = React.useState([
-    {
-      id: 'job-function-1',
-      description: 'job function description goes here',
-      percentage: '',
-      comments: [
-        { competency: 'Communication', indicator: 'foo', example: 'bar' },
-      ],
-    },
-  ]);
+  // use function to only run once per render
+  const initialState = () =>
+    JSON.parse(window.localStorage.getItem('performeter')) || [];
+
+  const [jobFunctions, setJobFunctions] = useState(initialState);
+
+  useEffect(() => {
+    debugger;
+    window.localStorage.setItem('performeter', JSON.stringify(jobFunctions));
+  }, [jobFunctions]); // only activate when value changes
 
   const addComment = (jobFunctionId) => {
     const newJobFunctions = jobFunctions.map((jobFunction) => {
@@ -24,7 +24,11 @@ function App() {
         debugger;
         const newComments = [
           ...jobFunction.comments,
-          { competency: '', indicator: 'foo', example: 'bar' },
+          {
+            competency: '',
+            indicator: '[behavioral indicator]',
+            example: '[specific example]',
+          },
         ];
 
         return { ...jobFunction, comments: newComments };
@@ -69,9 +73,19 @@ function App() {
         id: `job-function-${incrementId}`,
         description: 'job function description goes here',
         percentage: '',
-        comments: [{ competency: '', indicator: 'foo', example: 'bar' }],
+        comments: [
+          {
+            competency: '',
+            indicator: '[behavioral indicator]',
+            example: '[specific example]',
+          },
+        ],
       },
     ]);
+  };
+
+  const reset = () => {
+    setJobFunctions([]);
   };
 
   const allComments = jobFunctions
@@ -80,7 +94,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header reset={reset} />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
