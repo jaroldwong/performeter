@@ -11,7 +11,7 @@ const Header = (props) => (
     <div className="navbar-menu">
       <div className="navbar-end">
         <div className="navbar-item">
-          <div class="buttons">
+          <div className="buttons">
             <button className="button is-danger" onClick={props.reset}>
               Reset
             </button>

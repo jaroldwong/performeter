@@ -13,10 +13,10 @@ const JobFunctions = (props) => {
         <h2 className="subtitle">Job Function</h2>
         <progress
           className="progress is-success"
-          value={isNaN(parseInt(state.percent)) ? 0 : props.comments.length}
-          max={parseInt(state.percent) / 10}
+          value={state.percent ? props.comments.length : 0}
+          max={state.percent ? parseInt(state.percent) / 10 : 0}
         >
-          0%
+          {state.percent}
         </progress>
         <div className="field">
           <label className="label">Percentage</label>
@@ -27,9 +27,12 @@ const JobFunctions = (props) => {
                   setState({ percent: e.target.value });
                 }}
               >
-                <option>Select</option>
+                <option value="">Select</option>
                 {percentValues.map((value) => (
-                  <option key={value}>{`${value}%`}</option>
+                  <option
+                    value={value}
+                    key={`${props.id}-${value}`}
+                  >{`${value}%`}</option>
                 ))}
               </select>
             </div>

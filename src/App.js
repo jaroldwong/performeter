@@ -20,7 +20,6 @@ function App() {
   const addComment = (jobFunctionId) => {
     const newJobFunctions = jobFunctions.map((jobFunction) => {
       if (jobFunction.id === jobFunctionId) {
-        debugger;
         const newComments = [
           ...jobFunction.comments,
           {
