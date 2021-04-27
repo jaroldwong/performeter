@@ -32,6 +32,26 @@ const SupportingComment = ({
     updateComment(newComment);
   };
 
+  const updateIndicator = (e) => {
+    const updatedComment = {
+      competency,
+      indicator: e.target.value,
+      example,
+    };
+
+    updateComment(updatedComment);
+  };
+
+  const updateExample = (e) => {
+    const updatedComment = {
+      competency,
+      indicator,
+      example: e.target.value,
+    };
+
+    updateComment(updatedComment);
+  };
+
   return (
     <div className="box">
       <button
@@ -51,8 +71,18 @@ const SupportingComment = ({
             ))}
           </select>
         </div>
-        , I <InlineEditableContent initialValue={indicator} />
-        by <InlineEditableContent initialValue={example} />
+        , I{' '}
+        <InlineEditableContent
+          initialValue={indicator}
+          defaultValue="[behavioral indicator]"
+          onChange={updateIndicator}
+        />
+        by{' '}
+        <InlineEditableContent
+          initialValue={example}
+          defaultValue="[specific example]"
+          onChange={updateExample}
+        />
       </div>
     </div>
   );
