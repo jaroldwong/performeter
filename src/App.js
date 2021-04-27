@@ -98,6 +98,30 @@ function App() {
     ]);
   };
 
+  const updatePercentage = (id, percentage) => {
+    const updatedJobFunctions = jobFunctions.map((jobFunction) => {
+      if (jobFunction.id === id) {
+        return { ...jobFunction, percentage };
+      } else {
+        return jobFunction;
+      }
+    });
+
+    setJobFunctions(updatedJobFunctions);
+  };
+
+  const updateDescription = (id, e) => {
+    const updatedJobFunctions = jobFunctions.map((jobFunction) => {
+      if (jobFunction.id === id) {
+        return { ...jobFunction, description: e.target.value };
+      } else {
+        return jobFunction;
+      }
+    });
+
+    setJobFunctions(updatedJobFunctions);
+  };
+
   const reset = () => {
     setJobFunctions([]);
   };
@@ -133,6 +157,12 @@ function App() {
                 key={jobFunction.id}
                 addComment={() => {
                   addComment(jobFunction.id);
+                }}
+                updatePercentage={(e) => {
+                  updatePercentage(jobFunction.id, e);
+                }}
+                updateDescription={(e) => {
+                  updateDescription(jobFunction.id, e);
                 }}
               >
                 {jobFunction.comments.map((comment, commentIndex) => (

@@ -25,12 +25,13 @@ const JobFunctions = (props) => {
               <select
                 onChange={(e) => {
                   setState({ percent: e.target.value });
+                  props.updatePercentage(e.target.value);
                 }}
               >
                 <option value="">Select</option>
                 {percentValues.map((value) => (
                   <option
-                    value={value}
+                    value={`${value}%`}
                     key={`${props.id}-${value}`}
                   >{`${value}%`}</option>
                 ))}
@@ -44,6 +45,7 @@ const JobFunctions = (props) => {
             <textarea
               className="textarea"
               placeholder="Copy and paste job function here"
+              onChange={props.updateDescription}
             ></textarea>
           </div>
         </div>
