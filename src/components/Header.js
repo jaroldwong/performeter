@@ -4,7 +4,7 @@ const Header = (props) => (
   <nav className="navbar is-light">
     <div className="navbar-brand">
       <a className="navbar-item" href="/">
-        <h1 className="title is-4">Performeter</h1>
+        <h1 className="title is-4">PerforMeter</h1>
       </a>
     </div>
 
