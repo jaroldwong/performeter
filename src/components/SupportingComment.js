@@ -6,6 +6,7 @@ const SupportingComment = ({
   indicator,
   example,
   updateComment,
+  deleteComment,
 }) => {
   const coreCompetencies = [
     'Communication',
@@ -33,6 +34,11 @@ const SupportingComment = ({
 
   return (
     <div className="box">
+      <button
+        className="delete is-danger"
+        style={{ marginLeft: '99%', marginBottom: '.5rem' }}
+        onClick={() => deleteComment()}
+      ></button>
       <div style={{ display: 'block' }}>
         In the competency of{' '}
         <div className="select is-small">

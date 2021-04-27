@@ -14,7 +14,6 @@ function App() {
   const [jobFunctions, setJobFunctions] = useState(initialState);
 
   useEffect(() => {
-    debugger;
     window.localStorage.setItem('performeter', JSON.stringify(jobFunctions));
   }, [jobFunctions]); // only activate when value changes
 
@@ -60,6 +59,22 @@ function App() {
         return jobFunction;
       }
     });
+
+    setJobFunctions(() => newJobFunctions);
+  };
+
+  const deleteComment = (jobFunction, commentIndex) => {
+    const filteredComments = jobFunction.comments.filter(
+      (_, index) => index !== commentIndex
+    );
+
+    const updatedJobFunction = { ...jobFunction, comments: filteredComments };
+
+    const newJobFunctions = jobFunctions.map((jobFunction) =>
+      jobFunction.id === updatedJobFunction.id
+        ? updatedJobFunction
+        : jobFunction
+    );
 
     setJobFunctions(() => newJobFunctions);
   };
@@ -129,6 +144,9 @@ function App() {
                     updateComment={(newComment) => {
                       updateComment(jobFunction.id, commentIndex, newComment);
                     }}
+                    deleteComment={() =>
+                      deleteComment(jobFunction, commentIndex)
+                    }
                     key={comment.competency + commentIndex}
                   />
                 ))}
