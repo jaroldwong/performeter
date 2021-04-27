@@ -132,7 +132,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header reset={reset} />
+      <Header state={jobFunctions} reset={reset} />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
