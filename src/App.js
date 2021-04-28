@@ -153,6 +153,7 @@ function App() {
             {jobFunctions.map((jobFunction) => (
               <JobFunctions
                 id={jobFunction.id}
+                percentage={jobFunction.percentage}
                 comments={jobFunction.comments}
                 key={jobFunction.id}
                 addComment={() => {

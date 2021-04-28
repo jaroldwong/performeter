@@ -3,28 +3,24 @@ import React from 'react';
 const JobFunctions = (props) => {
   const percentValues = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
 
-  const [state, setState] = React.useState({
-    percent: '',
-  });
-
   return (
     <div>
       <div className="box">
         <h2 className="subtitle">Job Function</h2>
         <progress
           className="progress is-success"
-          value={state.percent ? props.comments.length : 0}
-          max={state.percent ? parseInt(state.percent) / 10 : 0}
+          value={props.percentage ? props.comments.length : 0}
+          max={props.percentage ? parseInt(props.percentage) / 10 : 0}
         >
-          {state.percent}
+          {props.percentage}
         </progress>
         <div className="field">
           <label className="label">Percentage</label>
           <div className="control">
             <div className="select is-small">
               <select
+                name="percent"
                 onChange={(e) => {
-                  setState({ percent: e.target.value });
                   props.updatePercentage(e.target.value);
                 }}
               >
