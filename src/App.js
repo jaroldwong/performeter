@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
 import CompetencyCounter from './components/CompetencyCounter';
-import JobFunction from './components/JobFunction';
-import SupportingComment from './components/SupportingComment';
+import JobFunctions from './components/JobFunctions';
+import Achievements from './components/Achievements';
+import Goals from './components/Goals';
 
 function App() {
   // use function to only run once per render
@@ -108,17 +109,40 @@ function App() {
     setJobFunctions(updatedJobFunctions);
   };
 
-  const reset = () => {
-    setJobFunctions([]);
-  };
-
   const allComments = jobFunctions
     .map((jobFunction) => jobFunction.comments)
     .flat();
 
+  const getActiveSection = () => {
+    switch (activeNav) {
+      case 'Job Functions':
+        return (
+          <JobFunctions
+            jobFunctions={jobFunctions}
+            handleAddJobFunction={handleAddJobFunction}
+            addComment={addComment}
+            updateJobFunction={updateJobFunction}
+            updateComment={updateComment}
+            deleteComment={deleteComment}
+          />
+        );
+      case 'Achievements':
+        return <Achievements />;
+      case 'Future Goals':
+        return <Goals />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="App">
-      <Header state={jobFunctions} reset={reset} />
+      <Header
+        state={jobFunctions}
+        reset={() => {
+          setJobFunctions([]);
+        }}
+      />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
@@ -131,44 +155,8 @@ function App() {
                 setActiveNav(e.target.innerText);
               }}
             />
-            <h1 className="title">
-              Job Functions
-              <button
-                className="button"
-                style={{ marginLeft: '1em' }}
-                onClick={handleAddJobFunction}
-              >
-                Add Job Function
-              </button>
-            </h1>
 
-            {jobFunctions.map((jobFunction) => (
-              <JobFunction
-                jobFunction={jobFunction}
-                key={jobFunction.id}
-                addComment={() => {
-                  addComment(jobFunction.id);
-                }}
-                updateJobFunction={(e) => {
-                  updateJobFunction(jobFunction.id, e);
-                }}
-              >
-                {jobFunction.comments.map((comment, commentIndex) => (
-                  <SupportingComment
-                    competency={comment.competency}
-                    indicator={comment.indicator}
-                    example={comment.example}
-                    updateComment={(newComment) => {
-                      updateComment(jobFunction.id, commentIndex, newComment);
-                    }}
-                    deleteComment={() =>
-                      deleteComment(jobFunction, commentIndex)
-                    }
-                    key={comment.competency + commentIndex}
-                  />
-                ))}
-              </JobFunction>
-            ))}
+            {getActiveSection()}
           </div>
         </div>
       </section>
