@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import CompetencyCounter from './components/CompetencyCounter';
-import JobFunctions from './components/JobFunctions';
+import JobFunction from './components/JobFunction';
 import SupportingComment from './components/SupportingComment';
 
 function App() {
@@ -79,12 +79,10 @@ function App() {
   };
 
   const handleAddJobFunction = () => {
-    const incrementId = jobFunctions.length + 1;
-
     setJobFunctions([
       ...jobFunctions,
       {
-        id: `job-function-${incrementId}`,
+        id: `job-function-${Math.random().toString(16).slice(2)}`,
         description: 'job function description goes here',
         percentage: '',
         comments: [
@@ -98,26 +96,12 @@ function App() {
     ]);
   };
 
-  const updatePercentage = (id, percentage) => {
-    const updatedJobFunctions = jobFunctions.map((jobFunction) => {
-      if (jobFunction.id === id) {
-        return { ...jobFunction, percentage };
-      } else {
-        return jobFunction;
-      }
-    });
-
-    setJobFunctions(updatedJobFunctions);
-  };
-
-  const updateDescription = (id, e) => {
-    const updatedJobFunctions = jobFunctions.map((jobFunction) => {
-      if (jobFunction.id === id) {
-        return { ...jobFunction, description: e.target.value };
-      } else {
-        return jobFunction;
-      }
-    });
+  const updateJobFunction = (id, e) => {
+    const updatedJobFunctions = jobFunctions.map((jobFunction) =>
+      jobFunction.id === id
+        ? { ...jobFunction, [e.target.name]: e.target.value }
+        : jobFunction
+    );
 
     setJobFunctions(updatedJobFunctions);
   };
@@ -151,19 +135,14 @@ function App() {
             </h1>
 
             {jobFunctions.map((jobFunction) => (
-              <JobFunctions
-                id={jobFunction.id}
-                percentage={jobFunction.percentage}
-                comments={jobFunction.comments}
+              <JobFunction
+                jobFunction={jobFunction}
                 key={jobFunction.id}
                 addComment={() => {
                   addComment(jobFunction.id);
                 }}
-                updatePercentage={(e) => {
-                  updatePercentage(jobFunction.id, e);
-                }}
-                updateDescription={(e) => {
-                  updateDescription(jobFunction.id, e);
+                updateJobFunction={(e) => {
+                  updateJobFunction(jobFunction.id, e);
                 }}
               >
                 {jobFunction.comments.map((comment, commentIndex) => (
@@ -180,7 +159,7 @@ function App() {
                     key={comment.competency + commentIndex}
                   />
                 ))}
-              </JobFunctions>
+              </JobFunction>
             ))}
           </div>
         </div>

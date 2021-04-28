@@ -1,7 +1,9 @@
 import React from 'react';
 
-const JobFunctions = (props) => {
+const JobFunction = (props) => {
+  debugger;
   const percentValues = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
+  const { comments, description, id, percentage } = props.jobFunction;
 
   return (
     <div>
@@ -9,26 +11,25 @@ const JobFunctions = (props) => {
         <h2 className="subtitle">Job Function</h2>
         <progress
           className="progress is-success"
-          value={props.percentage ? props.comments.length : 0}
-          max={props.percentage ? parseInt(props.percentage) / 10 : 0}
+          value={percentage ? comments.length : 0}
+          max={percentage ? parseInt(percentage) / 10 : 0}
         >
-          {props.percentage}
+          {percentage}
         </progress>
         <div className="field">
           <label className="label">Percentage</label>
           <div className="control">
             <div className="select is-small">
               <select
-                name="percent"
-                onChange={(e) => {
-                  props.updatePercentage(e.target.value);
-                }}
+                name="percentage"
+                value={percentage}
+                onChange={props.updateJobFunction}
               >
                 <option value="">Select</option>
                 {percentValues.map((value) => (
                   <option
                     value={`${value}%`}
-                    key={`${props.id}-${value}`}
+                    key={`${id}-${value}`}
                   >{`${value}%`}</option>
                 ))}
               </select>
@@ -39,9 +40,11 @@ const JobFunctions = (props) => {
           <label className="label">Description</label>
           <div className="control">
             <textarea
+              name="description"
               className="textarea"
               placeholder="Copy and paste job function here"
-              onChange={props.updateDescription}
+              value={description}
+              onChange={props.updateJobFunction}
             ></textarea>
           </div>
         </div>
@@ -54,4 +57,4 @@ const JobFunctions = (props) => {
   );
 };
 
-export default JobFunctions;
+export default JobFunction;
