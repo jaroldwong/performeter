@@ -2,6 +2,7 @@ import './App.css';
 
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import Tabs from './components/Tabs';
 import CompetencyCounter from './components/CompetencyCounter';
 import JobFunction from './components/JobFunction';
 import SupportingComment from './components/SupportingComment';
@@ -12,6 +13,7 @@ function App() {
     JSON.parse(window.localStorage.getItem('performeter')) || [];
 
   const [jobFunctions, setJobFunctions] = useState(initialState);
+  const [activeNav, setActiveNav] = useState('Job Functions');
 
   useEffect(() => {
     window.localStorage.setItem('performeter', JSON.stringify(jobFunctions));
@@ -123,6 +125,12 @@ function App() {
             <CompetencyCounter comments={allComments} />
           </div>
           <div className="column is-three-quarters">
+            <Tabs
+              activeNav={activeNav}
+              handleNav={(e) => {
+                setActiveNav(e.target.innerText);
+              }}
+            />
             <h1 className="title">
               Job Functions
               <button
