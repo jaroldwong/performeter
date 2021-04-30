@@ -11,16 +11,25 @@ import Goals from './components/Goals';
 function App() {
   // use function to only run once per render
   const initialState = () =>
-    JSON.parse(window.localStorage.getItem('performeter')) || [];
+    JSON.parse(window.localStorage.getItem('performeter'));
 
-  const [jobFunctions, setJobFunctions] = useState(initialState);
-  const [achievements, setAchievements] = useState('');
-  const [goals, setGoals] = useState('');
+  const [jobFunctions, setJobFunctions] = useState(
+    initialState.jobFunctions || []
+  );
+  const [achievements, setAchievements] = useState(
+    initialState.achievements || ''
+  );
+  const [goals, setGoals] = useState(initialState.goals || '');
   const [activeNav, setActiveNav] = useState('Job Functions');
 
   useEffect(() => {
-    window.localStorage.setItem('performeter', JSON.stringify(jobFunctions));
-  }, [jobFunctions]); // only activate when value changes
+    const data = {
+      jobFunctions,
+      achievements,
+      goals,
+    };
+    window.localStorage.setItem('performeter', JSON.stringify(data));
+  }, [jobFunctions, achievements, goals]); // only activate when these values change
 
   const addComment = (jobFunctionId) => {
     const newJobFunctions = jobFunctions.map((jobFunction) => {
