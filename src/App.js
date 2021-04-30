@@ -121,6 +121,12 @@ function App() {
     setGoals(event.target.value);
   };
 
+  const handleReset = () => {
+    setJobFunctions([]);
+    setAchievements('');
+    setGoals('');
+  };
+
   const allComments = jobFunctions
     .map((jobFunction) => jobFunction.comments)
     .flat();
@@ -154,12 +160,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        state={jobFunctions}
-        reset={() => {
-          setJobFunctions([]);
-        }}
-      />
+      <Header state={jobFunctions} handleReset={handleReset} />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">

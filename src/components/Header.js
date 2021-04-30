@@ -21,7 +21,7 @@ const exportText = (state) => {
   wnd.document.write(string);
 };
 
-const Header = (props) => (
+const Header = ({ state, handleReset }) => (
   <nav className="navbar is-light">
     <div className="navbar-brand">
       <a className="navbar-item" href="/">
@@ -33,10 +33,10 @@ const Header = (props) => (
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <button className="button is-danger" onClick={props.reset}>
+            <button className="button is-danger" onClick={handleReset}>
               Reset
             </button>
-            <button className="button" onClick={() => exportText(props.state)}>
+            <button className="button" onClick={() => exportText(state)}>
               Export as Text
             </button>
           </div>
