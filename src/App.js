@@ -14,6 +14,8 @@ function App() {
     JSON.parse(window.localStorage.getItem('performeter')) || [];
 
   const [jobFunctions, setJobFunctions] = useState(initialState);
+  const [achievements, setAchievements] = useState('');
+  const [goals, setGoals] = useState('');
   const [activeNav, setActiveNav] = useState('Job Functions');
 
   useEffect(() => {
@@ -109,11 +111,21 @@ function App() {
     setJobFunctions(updatedJobFunctions);
   };
 
+  // Achievements Handlers
+  const handleAchievementsChange = (event) => {
+    setAchievements(event.target.value);
+  };
+
+  // Goals Handlers
+  const handleGoalsChange = (event) => {
+    setGoals(event.target.value);
+  };
+
   const allComments = jobFunctions
     .map((jobFunction) => jobFunction.comments)
     .flat();
 
-  const getActiveSection = () => {
+  const getActiveTabSection = () => {
     switch (activeNav) {
       case 'Job Functions':
         return (
@@ -127,9 +139,14 @@ function App() {
           />
         );
       case 'Achievements':
-        return <Achievements />;
+        return (
+          <Achievements
+            achievements={achievements}
+            onAchievementsChange={handleAchievementsChange}
+          />
+        );
       case 'Future Goals':
-        return <Goals />;
+        return <Goals goals={goals} onGoalsChange={handleGoalsChange} />;
       default:
         return null;
     }
@@ -156,7 +173,7 @@ function App() {
               }}
             />
 
-            {getActiveSection()}
+            {getActiveTabSection()}
           </div>
         </div>
       </section>

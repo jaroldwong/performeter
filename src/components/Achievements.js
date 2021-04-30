@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Achievements = () => {
+const Achievements = ({ achievements, onAchievementsChange }) => {
   return (
     <>
       <h1 className="title">Achievements</h1>
@@ -12,6 +12,8 @@ const Achievements = () => {
               name="achievement"
               className="textarea"
               placeholder="Address your goals from last year"
+              value={achievements}
+              onChange={onAchievementsChange}
             ></textarea>
           </div>
         </div>

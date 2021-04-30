@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Goals = () => {
+const Goals = ({ goals, onGoalsChange }) => {
   return (
     <>
       <h1 className="title">Goals</h1>
@@ -12,6 +12,8 @@ const Goals = () => {
               name="goals"
               className="textarea"
               placeholder="Plan out your future goals"
+              value={goals}
+              onChange={onGoalsChange}
             ></textarea>
           </div>
         </div>
