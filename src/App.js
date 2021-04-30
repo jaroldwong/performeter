@@ -97,7 +97,7 @@ function App() {
       ...jobFunctions,
       {
         id: `job-function-${Math.random().toString(16).slice(2)}`,
-        description: 'job function description goes here',
+        description: '',
         percentage: '',
         comments: [
           {
