@@ -9,9 +9,7 @@ import Achievements from './components/Achievements';
 import Goals from './components/Goals';
 
 function App() {
-  // use function to only run once per render
-  const initialState = () =>
-    JSON.parse(window.localStorage.getItem('performeter'));
+  const initialState = JSON.parse(window.localStorage.getItem('performeter'));
 
   const [jobFunctions, setJobFunctions] = useState(
     initialState.jobFunctions || []
