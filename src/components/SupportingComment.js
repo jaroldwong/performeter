@@ -1,4 +1,5 @@
 import React from 'react';
+import IndicatorDropdown from './IndicatorDropdown';
 import InlineEditableContent from './InlineEditableContent';
 
 const SupportingComment = ({
@@ -83,6 +84,7 @@ const SupportingComment = ({
           defaultValue="[specific example]"
           onChange={updateExample}
         />
+        <IndicatorDropdown competency={competency} />
       </div>
     </div>
   );
