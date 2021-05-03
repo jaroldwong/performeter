@@ -140,36 +140,9 @@ function App() {
     .map((jobFunction) => jobFunction.comments)
     .flat();
 
-  const getActiveTabSection = () => {
-    switch (activeNav) {
-      case 'Job Functions':
-        return (
-          <JobFunctions
-            jobFunctions={jobFunctions}
-            handleAddJobFunction={handleAddJobFunction}
-            addComment={addComment}
-            updateJobFunction={updateJobFunction}
-            updateComment={updateComment}
-            deleteComment={deleteComment}
-          />
-        );
-      case 'Achievements':
-        return (
-          <Achievements
-            achievements={achievements}
-            onAchievementsChange={handleAchievementsChange}
-          />
-        );
-      case 'Future Goals':
-        return <Goals goals={goals} onGoalsChange={handleGoalsChange} />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="App">
-      <Header state={jobFunctions} handleReset={handleReset} />
+      <Header state={jobFunctions} onReset={handleReset} />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
@@ -183,7 +156,29 @@ function App() {
               }}
             />
 
-            {getActiveTabSection()}
+            {
+              {
+                'Job Functions': (
+                  <JobFunctions
+                    jobFunctions={jobFunctions}
+                    handleAddJobFunction={handleAddJobFunction}
+                    addComment={addComment}
+                    updateJobFunction={updateJobFunction}
+                    updateComment={updateComment}
+                    deleteComment={deleteComment}
+                  />
+                ),
+                Achievements: (
+                  <Achievements
+                    achievements={achievements}
+                    onAchievementsChange={handleAchievementsChange}
+                  />
+                ),
+                'Future Goals': (
+                  <Goals goals={goals} onGoalsChange={handleGoalsChange} />
+                ),
+              }[activeNav]
+            }
           </div>
         </div>
       </section>
