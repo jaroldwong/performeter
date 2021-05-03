@@ -23,6 +23,21 @@ const CompetencyCounter = ({ comments }) => {
     return acc;
   }, competencyCount);
 
+  const competencyColor = Object.keys(competencyCount).reduce(
+    (acc, current) => {
+      if (competencyCount[current] === 0) {
+        acc[current] = '';
+      } else if (competencyCount[current] === 1) {
+        acc[current] = 'is-warning';
+      } else {
+        acc[current] = 'is-success';
+      }
+
+      return acc;
+    },
+    {}
+  );
+
   return (
     <div className="fixed">
       <h1 className="title is-6">Core Competencies</h1>
@@ -31,20 +46,10 @@ const CompetencyCounter = ({ comments }) => {
         {Object.keys(competencyCount).map((key, index) => (
           <li key={`key + ${index}`} style={{ padding: '3px' }}>
             <div className="tags has-addons">
-              <span
-                className={
-                  'tag ' + (competencyCount[key] > 1 ? 'is-success' : '')
-                }
-              >
+              <span className={'tag ' + competencyColor[key]}>
                 {competencyCount[key]}
               </span>
-              <span
-                className={
-                  'tag ' + (competencyCount[key] > 1 ? 'is-success' : '')
-                }
-              >
-                {key}
-              </span>
+              <span className={'tag ' + competencyColor[key]}>{key}</span>
             </div>
           </li>
         ))}
