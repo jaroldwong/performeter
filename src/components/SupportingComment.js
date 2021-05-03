@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IndicatorDropdown from './IndicatorDropdown';
 import InlineEditableContent from './InlineEditableContent';
+
+import { CORE_COMPETENCIES } from '../constants';
 
 const SupportingComment = ({
   competency,
@@ -9,34 +11,28 @@ const SupportingComment = ({
   updateComment,
   deleteComment,
 }) => {
-  const coreCompetencies = [
-    'Communication',
-    'Decision Making',
-    'Diversity, Equity, Inclusion',
-    'Health and Safety',
-    'Leadership',
-    'Problem Solving and Innovation',
-    'Quality Improvement',
-    'Service Focus',
-    'Stewardship and Managing Resources',
-    'Strategic Planning',
-    'Teamwork',
-    'Managing People (Supervisors)',
-  ];
+  const [showIndicatorDropdown, setShowIndicatorDropdown] = useState(
+    indicator === '' ? true : false
+  );
 
   const handleChange = (e) => {
     const newComment = {
       competency: e.target.value,
-      indicator: indicator,
+      indicator: '',
       example: example,
     };
     updateComment(newComment);
   };
 
   const updateIndicator = (e) => {
+    if (showIndicatorDropdown === true) {
+      setShowIndicatorDropdown(false);
+    }
+
+    const value = e.target ? e.target.value : e;
     const updatedComment = {
       competency,
-      indicator: e.target.value,
+      indicator: value,
       example,
     };
 
@@ -65,7 +61,7 @@ const SupportingComment = ({
         <div className="select is-small">
           <select defaultValue={competency} onChange={handleChange}>
             <option value="Select">Select One</option>
-            {coreCompetencies.map((competency) => (
+            {CORE_COMPETENCIES.map((competency) => (
               <option value={competency} key={competency}>
                 {competency}
               </option>
@@ -73,18 +69,25 @@ const SupportingComment = ({
           </select>
         </div>
         , I{' '}
-        <InlineEditableContent
-          initialValue={indicator}
-          defaultValue="[behavioral indicator]"
-          onChange={updateIndicator}
-        />
+        {showIndicatorDropdown ? (
+          <IndicatorDropdown
+            competency={competency}
+            indicator={indicator}
+            onUpdate={updateIndicator}
+          />
+        ) : (
+          <InlineEditableContent
+            initialValue={indicator}
+            defaultValue="[behavioral indicator]"
+            onChange={updateIndicator}
+          />
+        )}{' '}
         by{' '}
         <InlineEditableContent
           initialValue={example}
           defaultValue="[specific example]"
           onChange={updateExample}
         />
-        <IndicatorDropdown competency={competency} />
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ function App() {
           ...jobFunction.comments,
           {
             competency: '',
-            indicator: '[behavioral indicator]',
+            indicator: '',
             example: '[specific example]',
           },
         ];
@@ -100,7 +100,7 @@ function App() {
         comments: [
           {
             competency: '',
-            indicator: '[behavioral indicator]',
+            indicator: '',
             example: '[specific example]',
           },
         ],
