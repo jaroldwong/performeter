@@ -1,23 +1,18 @@
 import React from 'react';
+import Goal from './Goal';
 
-const Goals = ({ goals, onGoalsChange }) => {
+const Goals = ({ goals, onGoalChange }) => {
   return (
     <>
       <h1 className="title">Goals</h1>
-      <div className="box">
-        <div className="field">
-          <label className="label">Goals</label>
-          <div className="control">
-            <textarea
-              name="goals"
-              className="textarea"
-              placeholder="Plan out your future goals"
-              value={goals}
-              onChange={onGoalsChange}
-            ></textarea>
-          </div>
-        </div>
-      </div>
+      {goals.map((goal, index) => (
+        <Goal
+          key={goal.title}
+          title={goal.title}
+          value={goal.value}
+          handleGoalChange={(e) => onGoalChange(e, index)}
+        />
+      ))}
     </>
   );
 };

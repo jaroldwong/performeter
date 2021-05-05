@@ -9,7 +9,8 @@ import Achievements from './components/Achievements';
 import Goals from './components/Goals';
 
 function App() {
-  const initialState = JSON.parse(window.localStorage.getItem('performeter'));
+  const initialState =
+    JSON.parse(window.localStorage.getItem('performeter')) || {};
 
   const [jobFunctions, setJobFunctions] = useState(
     initialState.jobFunctions || []
@@ -17,7 +18,12 @@ function App() {
   const [achievements, setAchievements] = useState(
     initialState.achievements || ''
   );
-  const [goals, setGoals] = useState(initialState.goals || '');
+  const [goals, setGoals] = useState(
+    initialState.goals || [
+      { title: 'goal 1', value: 'number 1' },
+      { title: 'goal 2', value: 'number 2' },
+    ]
+  );
   const [activeNav, setActiveNav] = useState('Job Functions');
 
   useEffect(() => {
@@ -124,14 +130,22 @@ function App() {
   };
 
   // Goals Handlers
-  const handleGoalsChange = (event) => {
-    setGoals(event.target.value);
+  const handleGoalChange = (event, index) => {
+    const updatedGoals = goals.map((goal, goalIndex) => {
+      if (goalIndex === index) {
+        return { ...goal, value: event.target.value };
+      }
+
+      return goal;
+    });
+
+    setGoals(() => updatedGoals);
   };
 
   const handleReset = () => {
     setJobFunctions([]);
     setAchievements('');
-    setGoals('');
+    setGoals([]);
   };
 
   const allComments = jobFunctions
@@ -173,7 +187,7 @@ function App() {
                   />
                 ),
                 'Future Goals': (
-                  <Goals goals={goals} onGoalsChange={handleGoalsChange} />
+                  <Goals goals={goals} onGoalChange={handleGoalChange} />
                 ),
               }[activeNav]
             }
