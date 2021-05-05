@@ -1,10 +1,19 @@
 import React from 'react';
 import Goal from './Goal';
 
-const Goals = ({ goals, onGoalChange }) => {
+const Goals = ({ goals, onAddGoal, onGoalChange }) => {
   return (
     <>
-      <h1 className="title">Goals</h1>
+      <h1 className="title">
+        Goals
+        <button
+          className="button"
+          style={{ marginLeft: '1em' }}
+          onClick={onAddGoal}
+        >
+          Add Goal
+        </button>
+      </h1>
       {goals.map((goal, index) => (
         <Goal
           key={goal.title}

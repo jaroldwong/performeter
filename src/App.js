@@ -130,6 +130,15 @@ function App() {
   };
 
   // Goals Handlers
+  const handleAddGoal = () => {
+    const newGoalIndex = goals.length + 1;
+    const newGoal = {
+      title: `Goal ${newGoalIndex}`,
+      value: '',
+    };
+    setGoals((prevState) => [...prevState, newGoal]);
+  };
+
   const handleGoalChange = (event, index) => {
     const updatedGoals = goals.map((goal, goalIndex) => {
       if (goalIndex === index) {
@@ -187,7 +196,11 @@ function App() {
                   />
                 ),
                 'Future Goals': (
-                  <Goals goals={goals} onGoalChange={handleGoalChange} />
+                  <Goals
+                    goals={goals}
+                    onAddGoal={handleAddGoal}
+                    onGoalChange={handleGoalChange}
+                  />
                 ),
               }[activeNav]
             }
