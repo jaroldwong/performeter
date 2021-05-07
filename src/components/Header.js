@@ -21,7 +21,7 @@ const exportText = (state) => {
   wnd.document.write(string);
 };
 
-const Header = ({ state, onReset }) => (
+const Header = ({ state, resetData }) => (
   <nav className="navbar is-light">
     <div className="navbar-brand">
       <a className="navbar-item" href="/">
@@ -33,7 +33,7 @@ const Header = ({ state, onReset }) => (
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <button className="button is-danger" onClick={onReset}>
+            <button className="button is-danger" onClick={resetData}>
               Reset
             </button>
             <button className="button" onClick={() => exportText(state)}>

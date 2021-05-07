@@ -1,7 +1,7 @@
 import React from 'react';
 import Goal from './Goal';
 
-const Goals = ({ goals, onAddGoal, onGoalChange }) => {
+const Goals = ({ goals, addGoal, updateGoal }) => {
   return (
     <>
       <h1 className="title">
@@ -9,7 +9,7 @@ const Goals = ({ goals, onAddGoal, onGoalChange }) => {
         <button
           className="button"
           style={{ marginLeft: '1em' }}
-          onClick={onAddGoal}
+          onClick={addGoal}
         >
           Add Goal
         </button>
@@ -19,7 +19,7 @@ const Goals = ({ goals, onAddGoal, onGoalChange }) => {
           key={goal.title}
           title={goal.title}
           value={goal.value}
-          handleGoalChange={(e) => onGoalChange(e, index)}
+          handleGoalChange={(e) => updateGoal(e, index)}
         />
       ))}
     </>

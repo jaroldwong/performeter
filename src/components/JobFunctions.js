@@ -4,7 +4,7 @@ import SupportingComment from './SupportingComment';
 
 const JobFunctions = ({
   jobFunctions,
-  handleAddJobFunction,
+  addJobFunction,
   addComment,
   updateJobFunction,
   updateComment,
@@ -17,7 +17,7 @@ const JobFunctions = ({
         <button
           className="button"
           style={{ marginLeft: '1em' }}
-          onClick={handleAddJobFunction}
+          onClick={addJobFunction}
         >
           Add Job Function
         </button>

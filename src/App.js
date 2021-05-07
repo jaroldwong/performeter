@@ -91,7 +91,7 @@ function App() {
     setJobFunctions(() => newJobFunctions);
   };
 
-  const handleAddJobFunction = () => {
+  const addJobFunction = () => {
     setJobFunctions([
       ...jobFunctions,
       {
@@ -120,12 +120,12 @@ function App() {
   };
 
   // Achievements Handlers
-  const handleAchievementsChange = (event) => {
+  const updateAchievements = (event) => {
     setAchievements(event.target.value);
   };
 
   // Goals Handlers
-  const handleAddGoal = () => {
+  const addGoal = () => {
     const newGoalIndex = goals.length + 1;
     const newGoal = {
       title: `Goal ${newGoalIndex}`,
@@ -134,7 +134,7 @@ function App() {
     setGoals((prevState) => [...prevState, newGoal]);
   };
 
-  const handleGoalChange = (event, index) => {
+  const updateGoal = (event, index) => {
     const updatedGoals = goals.map((goal, goalIndex) => {
       if (goalIndex === index) {
         return { ...goal, value: event.target.value };
@@ -146,7 +146,7 @@ function App() {
     setGoals(() => updatedGoals);
   };
 
-  const handleReset = () => {
+  const resetData = () => {
     setJobFunctions([]);
     setAchievements('');
     setGoals([]);
@@ -158,7 +158,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header state={jobFunctions} onReset={handleReset} />
+      <Header state={jobFunctions} resetData={resetData} />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
@@ -177,7 +177,7 @@ function App() {
                 'Job Functions': (
                   <JobFunctions
                     jobFunctions={jobFunctions}
-                    handleAddJobFunction={handleAddJobFunction}
+                    addJobFunction={addJobFunction}
                     addComment={addComment}
                     updateJobFunction={updateJobFunction}
                     updateComment={updateComment}
@@ -187,14 +187,14 @@ function App() {
                 Achievements: (
                   <Achievements
                     achievements={achievements}
-                    onAchievementsChange={handleAchievementsChange}
+                    updateAchievements={updateAchievements}
                   />
                 ),
                 'Future Goals': (
                   <Goals
                     goals={goals}
-                    onAddGoal={handleAddGoal}
-                    onGoalChange={handleGoalChange}
+                    addGoal={addGoal}
+                    updateGoal={updateGoal}
                   />
                 ),
               }[activeNav]
