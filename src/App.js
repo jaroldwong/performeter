@@ -19,16 +19,19 @@ function App() {
     initialState.achievements || ''
   );
   const [goals, setGoals] = useState(initialState.goals || []);
-  const [activeNav, setActiveNav] = useState('Job Functions');
+  const [activeTab, setactiveTab] = useState(
+    initialState.activeTab || 'Job Functions'
+  );
 
   useEffect(() => {
     const data = {
       jobFunctions,
       achievements,
       goals,
+      activeTab,
     };
     window.localStorage.setItem('performeter', JSON.stringify(data));
-  }, [jobFunctions, achievements, goals]); // only activate when these values change
+  }, [jobFunctions, achievements, goals, activeTab]); // only activate when these values change
 
   const addComment = (jobFunctionId) => {
     const newJobFunctions = jobFunctions.map((jobFunction) => {
@@ -146,10 +149,15 @@ function App() {
     setGoals(() => updatedGoals);
   };
 
+  const updateNav = (e) => {
+    setactiveTab(e.target.innerText);
+  };
+
   const resetData = () => {
     setJobFunctions([]);
     setAchievements('');
     setGoals([]);
+    setactiveTab('Job Functions');
   };
 
   const allComments = jobFunctions
@@ -165,12 +173,7 @@ function App() {
             <CompetencyCounter comments={allComments} />
           </div>
           <div className="column is-three-quarters">
-            <Tabs
-              activeNav={activeNav}
-              handleNav={(e) => {
-                setActiveNav(e.target.innerText);
-              }}
-            />
+            <Tabs activeTab={activeTab} updateNav={updateNav} />
 
             {
               {
@@ -197,7 +200,7 @@ function App() {
                     updateGoal={updateGoal}
                   />
                 ),
-              }[activeNav]
+              }[activeTab]
             }
           </div>
         </div>
