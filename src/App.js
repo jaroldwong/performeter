@@ -18,12 +18,7 @@ function App() {
   const [achievements, setAchievements] = useState(
     initialState.achievements || ''
   );
-  const [goals, setGoals] = useState(
-    initialState.goals || [
-      { title: 'goal 1', value: 'number 1' },
-      { title: 'goal 2', value: 'number 2' },
-    ]
-  );
+  const [goals, setGoals] = useState(initialState.goals || []);
   const [activeNav, setActiveNav] = useState('Job Functions');
 
   useEffect(() => {
