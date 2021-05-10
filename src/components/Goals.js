@@ -1,5 +1,6 @@
 import React from 'react';
 import Goal from './Goal';
+import PropTypes from 'prop-types';
 
 const Goals = ({ goals, addGoal, updateGoal }) => {
   return (
@@ -24,6 +25,12 @@ const Goals = ({ goals, addGoal, updateGoal }) => {
       ))}
     </>
   );
+};
+
+Goals.propTypes = {
+  goals: PropTypes.arrayOf(PropTypes.object),
+  addGoal: PropTypes.func,
+  updateGoal: PropTypes.func,
 };
 
 export default Goals;

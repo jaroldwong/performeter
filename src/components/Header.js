@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const exportText = (state) => {
   const text = state.map((item) => {
@@ -45,5 +46,10 @@ const Header = ({ state, resetData }) => (
     </div>
   </nav>
 );
+
+Header.propTypes = {
+  state: PropTypes.arrayOf(PropTypes.object),
+  resetData: PropTypes.func,
+};
 
 export default Header;

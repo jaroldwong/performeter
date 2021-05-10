@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Goal = ({ title, value, handleGoalChange }) => (
   <div className="box">
@@ -16,5 +17,11 @@ const Goal = ({ title, value, handleGoalChange }) => (
     </div>
   </div>
 );
+
+Goal.propTypes = {
+  title: PropTypes.string,
+  value: PropTypes.string,
+  handleGoalChange: PropTypes.func,
+};
 
 export default Goal;

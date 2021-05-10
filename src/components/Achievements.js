@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Achievements = ({ achievements, updateAchievements }) => {
   return (
@@ -20,6 +21,11 @@ const Achievements = ({ achievements, updateAchievements }) => {
       </div>
     </>
   );
+};
+
+Achievements.propTypes = {
+  achievements: PropTypes.string,
+  updateAchievements: PropTypes.func,
 };
 
 export default Achievements;
