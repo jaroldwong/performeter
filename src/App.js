@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
 import CompetencyCounter from './components/CompetencyCounter';
@@ -8,9 +8,16 @@ import JobFunctions from './components/JobFunctions';
 import Achievements from './components/Achievements';
 import Goals from './components/Goals';
 
+import jobFunctionReducers from './reducers/jobFunctionReducers';
+
 function App() {
   const initialState =
     JSON.parse(window.localStorage.getItem('performeter')) || {};
+
+  const [state, dispatch] = useReducer(
+    jobFunctionReducers,
+    initialState.jobFunctions || []
+  );
 
   const [jobFunctions, setJobFunctions] = useState(
     initialState.jobFunctions || []
@@ -25,102 +32,13 @@ function App() {
 
   useEffect(() => {
     const data = {
-      jobFunctions,
+      jobFunctions: state,
       achievements,
       goals,
       activeTab,
     };
     window.localStorage.setItem('performeter', JSON.stringify(data));
-  }, [jobFunctions, achievements, goals, activeTab]); // only activate when these values change
-
-  const addComment = (jobFunctionId) => {
-    const newJobFunctions = jobFunctions.map((jobFunction) => {
-      if (jobFunction.id === jobFunctionId) {
-        const newComments = [
-          ...jobFunction.comments,
-          {
-            competency: '',
-            indicator: '',
-            example: '[specific example]',
-          },
-        ];
-
-        return { ...jobFunction, comments: newComments };
-      } else {
-        return jobFunction;
-      }
-    });
-
-    setJobFunctions(() => newJobFunctions);
-  };
-
-  const updateComment = (jobFunctionId, commentIndex, newComment) => {
-    const jobFunction = jobFunctions.find((jf) => jf.id === jobFunctionId);
-
-    const updatedComments = jobFunction.comments.map((comment, idx) => {
-      if (idx === commentIndex) {
-        return newComment;
-      } else {
-        return comment;
-      }
-    });
-
-    const newJobFunction = { ...jobFunction, comments: updatedComments };
-
-    const newJobFunctions = jobFunctions.map((jobFunction) => {
-      if (jobFunction.id === jobFunctionId) {
-        return newJobFunction;
-      } else {
-        return jobFunction;
-      }
-    });
-
-    setJobFunctions(() => newJobFunctions);
-  };
-
-  const deleteComment = (jobFunction, commentIndex) => {
-    const filteredComments = jobFunction.comments.filter(
-      (_, index) => index !== commentIndex
-    );
-
-    const updatedJobFunction = { ...jobFunction, comments: filteredComments };
-
-    const newJobFunctions = jobFunctions.map((jobFunction) =>
-      jobFunction.id === updatedJobFunction.id
-        ? updatedJobFunction
-        : jobFunction
-    );
-
-    setJobFunctions(() => newJobFunctions);
-  };
-
-  const addJobFunction = () => {
-    setJobFunctions([
-      ...jobFunctions,
-      {
-        id: `job-function-${Math.random().toString(16).slice(2)}`,
-        description: '',
-        percentage: '',
-        comments: [
-          {
-            competency: '',
-            indicator: '',
-            example: '[specific example]',
-          },
-        ],
-      },
-    ]);
-  };
-
-  const updateJobFunction = (id, e) => {
-    const updatedJobFunctions = jobFunctions.map((jobFunction) =>
-      jobFunction.id === id
-        ? { ...jobFunction, [e.target.name]: e.target.value }
-        : jobFunction
-    );
-
-    setJobFunctions(updatedJobFunctions);
-  };
+  }, [state, achievements, goals, activeTab]); // only activate when these values change
 
   // Achievements Handlers
   const updateAchievements = (event) => {
@@ -160,9 +78,7 @@ function App() {
     setactiveTab('Job Functions');
   };
 
-  const allComments = jobFunctions
-    .map((jobFunction) => jobFunction.comments)
-    .flat();
+  const allComments = state.map((jobFunction) => jobFunction.comments).flat();
 
   return (
     <div className="App">
@@ -179,12 +95,35 @@ function App() {
               {
                 'Job Functions': (
                   <JobFunctions
-                    jobFunctions={jobFunctions}
-                    addJobFunction={addJobFunction}
-                    addComment={addComment}
-                    updateJobFunction={updateJobFunction}
-                    updateComment={updateComment}
-                    deleteComment={deleteComment}
+                    jobFunctions={state}
+                    addJobFunction={() =>
+                      dispatch({ type: 'ADD_JOB_FUNCTION' })
+                    }
+                    updateJobFunction={(id, event) =>
+                      dispatch({
+                        type: 'UPDATE_JOB_FUNCTION',
+                        payload: { id, event },
+                      })
+                    }
+                    addComment={(id) =>
+                      dispatch({ type: 'ADD_COMMENT', payload: { id } })
+                    }
+                    updateComment={(
+                      jobFunctionId,
+                      commentIndex,
+                      newComment
+                    ) => {
+                      dispatch({
+                        type: 'UPDATE_COMMENT',
+                        payload: { jobFunctionId, commentIndex, newComment },
+                      });
+                    }}
+                    deleteComment={(jobFunction, commentIndex) =>
+                      dispatch({
+                        type: 'DELETE_COMMENT',
+                        payload: { jobFunction, commentIndex },
+                      })
+                    }
                   />
                 ),
                 Achievements: (
