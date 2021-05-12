@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const exportText = (state) => {
-  const text = state.map((item) => {
+const exportText = ({ state, achievements, goals }) => {
+  const jobFunctionsTitle = '<p><strong>Job Functions</strong></p>';
+
+  const jobFunctionsText = state.map((item) => {
     const heading = `<p>${item.percentage} - ${item.description} </p>`;
 
     const comments = item.comments.reduce((acc, curr) => {
@@ -14,7 +16,23 @@ const exportText = (state) => {
     return heading + comments;
   });
 
-  const string = text.reduce((acc, curr) => {
+  const achievementsTitle = '<p><strong>Achievements</strong></p>';
+  const achievementsText = `${achievements}<br><br>`;
+  const goalsTitle = '<p><strong>Goals</strong></p>';
+  const goalsText = goals.map((goal) => {
+    return `${goal.title}<br> ${goal.value}`;
+  });
+
+  const combinedText = [
+    jobFunctionsTitle,
+    ...jobFunctionsText,
+    achievementsTitle,
+    achievementsText,
+    goalsTitle,
+    ...goalsText,
+  ];
+
+  const string = combinedText.reduce((acc, curr) => {
     return acc.concat(curr);
   }, '');
 
@@ -22,7 +40,7 @@ const exportText = (state) => {
   wnd.document.write(string);
 };
 
-const Header = ({ state, resetData }) => (
+const Header = ({ state, achievements, goals, resetData }) => (
   <nav className="navbar is-light">
     <div className="navbar-brand">
       <a className="navbar-item" href="/">
@@ -37,7 +55,10 @@ const Header = ({ state, resetData }) => (
             <button className="button is-danger" onClick={resetData}>
               Reset
             </button>
-            <button className="button" onClick={() => exportText(state)}>
+            <button
+              className="button"
+              onClick={() => exportText({ state, achievements, goals })}
+            >
               Export as Text
             </button>
           </div>

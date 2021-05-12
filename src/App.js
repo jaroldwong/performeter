@@ -81,7 +81,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header state={jobFunctions} resetData={resetData} />
+      <Header
+        state={state}
+        achievements={achievements}
+        goals={goals}
+        resetData={resetData}
+      />
       <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
