@@ -22,9 +22,6 @@ function App() {
     initialState.jobFunctions || []
   );
 
-  const [jobFunctions, setJobFunctions] = useState(
-    initialState.jobFunctions || []
-  );
   const [achievements, setAchievements] = useState(
     initialState.achievements || ''
   );
@@ -71,10 +68,10 @@ function App() {
   };
 
   const resetData = () => {
-    setJobFunctions([]);
+    dispatch({ type: 'RESET_JOB_FUNCTIONS' });
     setAchievements('');
     setGoals([]);
-    // setactiveTab('Job Functions');
+    appDispatch({ type: 'RESET_ACTIVE_TAB' });
   };
 
   const allComments = state.map((jobFunction) => jobFunction.comments).flat();

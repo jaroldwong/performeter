@@ -1,7 +1,6 @@
 export default function jobFunctionReducer(state, action) {
   switch (action.type) {
     case 'ADD_JOB_FUNCTION':
-      debugger;
       return [
         ...state,
         {
@@ -80,6 +79,9 @@ export default function jobFunctionReducer(state, action) {
           ? updatedJobFunction
           : jobFunction
       );
+    }
+    case 'RESET_JOB_FUNCTIONS': {
+      return [];
     }
     default:
       throw new Error();
