@@ -1,4 +1,4 @@
-export default function reducer(state, action) {
+export default function jobFunctionReducer(state, action) {
   switch (action.type) {
     case 'ADD_JOB_FUNCTION':
       debugger;

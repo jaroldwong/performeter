@@ -8,14 +8,14 @@ import JobFunctions from './components/JobFunctions';
 import Achievements from './components/Achievements';
 import Goals from './components/Goals';
 
-import jobFunctionReducers from './reducers/jobFunctionReducers';
+import jobFunctionReducer from './reducers/jobFunctionReducer';
 
 function App() {
   const initialState =
     JSON.parse(window.localStorage.getItem('performeter')) || {};
 
   const [state, dispatch] = useReducer(
-    jobFunctionReducers,
+    jobFunctionReducer,
     initialState.jobFunctions || []
   );
 
