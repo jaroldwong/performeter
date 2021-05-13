@@ -10,6 +10,7 @@ const IndicatorDropdown = ({ competency, indicator, onUpdate }) => {
   };
 
   const handleSetIndicator = (e) => {
+    e.preventDefault();
     onUpdate(e.target.innerHTML);
   };
 
