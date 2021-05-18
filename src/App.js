@@ -43,24 +43,20 @@ function App() {
 
   // Goals Handlers
   const addGoal = () => {
-    const newGoalIndex = goals.length + 1;
     const newGoal = {
-      title: `Goal ${newGoalIndex}`,
+      id: new Date().getTime(),
+      title: `Goal ${goals.length + 1}`,
       value: '',
     };
     setGoals((prevState) => [...prevState, newGoal]);
   };
 
-  const updateGoal = (event, index) => {
-    const updatedGoals = goals.map((goal, goalIndex) => {
-      if (goalIndex === index) {
-        return { ...goal, value: event.target.value };
-      }
+  const updateGoal = (newGoal) => {
+    const newGoals = goals.map((goal) =>
+      goals.id === goal.id ? newGoal : goal
+    );
 
-      return goal;
-    });
-
-    setGoals(() => updatedGoals);
+    setGoals(() => newGoals);
   };
 
   const updateNav = (e) => {

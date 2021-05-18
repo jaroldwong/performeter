@@ -15,12 +15,13 @@ const Goals = ({ goals, addGoal, updateGoal }) => {
           Add Goal
         </button>
       </h1>
-      {goals.map((goal, index) => (
+      {goals.map((goal) => (
         <Goal
-          key={goal.title}
+          key={goal.id}
+          id={goal.id}
           title={goal.title}
           value={goal.value}
-          handleGoalChange={(e) => updateGoal(e, index)}
+          handleUpdate={updateGoal}
         />
       ))}
     </>
