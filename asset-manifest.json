@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/performeter/static/css/main.7ba47419.chunk.css",
-    "main.js": "/performeter/static/js/main.56426d3b.chunk.js",
-    "main.js.map": "/performeter/static/js/main.56426d3b.chunk.js.map",
+    "main.js": "/performeter/static/js/main.49137096.chunk.js",
+    "main.js.map": "/performeter/static/js/main.49137096.chunk.js.map",
     "runtime-main.js": "/performeter/static/js/runtime-main.247b0e81.js",
     "runtime-main.js.map": "/performeter/static/js/runtime-main.247b0e81.js.map",
     "static/css/2.0d309abc.chunk.css": "/performeter/static/css/2.0d309abc.chunk.css",
-    "static/js/2.d9247b69.chunk.js": "/performeter/static/js/2.d9247b69.chunk.js",
-    "static/js/2.d9247b69.chunk.js.map": "/performeter/static/js/2.d9247b69.chunk.js.map",
+    "static/js/2.33b98d28.chunk.js": "/performeter/static/js/2.33b98d28.chunk.js",
+    "static/js/2.33b98d28.chunk.js.map": "/performeter/static/js/2.33b98d28.chunk.js.map",
     "index.html": "/performeter/index.html",
     "static/css/2.0d309abc.chunk.css.map": "/performeter/static/css/2.0d309abc.chunk.css.map",
     "static/css/main.7ba47419.chunk.css.map": "/performeter/static/css/main.7ba47419.chunk.css.map",
-    "static/js/2.d9247b69.chunk.js.LICENSE.txt": "/performeter/static/js/2.d9247b69.chunk.js.LICENSE.txt"
+    "static/js/2.33b98d28.chunk.js.LICENSE.txt": "/performeter/static/js/2.33b98d28.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.247b0e81.js",
     "static/css/2.0d309abc.chunk.css",
-    "static/js/2.d9247b69.chunk.js",
+    "static/js/2.33b98d28.chunk.js",
     "static/css/main.7ba47419.chunk.css",
-    "static/js/main.56426d3b.chunk.js"
+    "static/js/main.49137096.chunk.js"
   ]
 }
