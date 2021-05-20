@@ -53,7 +53,7 @@ function App() {
 
   const updateGoal = (newGoal) => {
     const newGoals = goals.map((goal) =>
-      goals.id === goal.id ? newGoal : goal
+      goal.id === newGoal.id ? newGoal : goal
     );
 
     setGoals(() => newGoals);
