@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Heading, Tag } from 'react-bulma-components';
+
 const CompetencyCounter = ({ comments }) => {
   let competencyCount = {
     Communication: 0,
@@ -28,9 +30,9 @@ const CompetencyCounter = ({ comments }) => {
       if (competencyCount[current] === 0) {
         acc[current] = '';
       } else if (competencyCount[current] === 1) {
-        acc[current] = 'is-warning';
+        acc[current] = 'warning';
       } else {
-        acc[current] = 'is-success';
+        acc[current] = 'success';
       }
 
       return acc;
@@ -39,22 +41,19 @@ const CompetencyCounter = ({ comments }) => {
   );
 
   return (
-    <div className="fixed">
-      <h1 className="title is-6">Core Competencies</h1>
-
-      <ul className="unstyled-list">
+    <>
+      <Heading size={6}>Core Competencies</Heading>
+      <ul>
         {Object.keys(competencyCount).map((key, index) => (
           <li key={`key + ${index}`} style={{ padding: '3px' }}>
-            <div className="tags has-addons">
-              <span className={'tag ' + competencyColor[key]}>
-                {competencyCount[key]}
-              </span>
-              <span className={'tag ' + competencyColor[key]}>{key}</span>
-            </div>
+            <Tag.Group hasAddons>
+              <Tag color={competencyColor[key]}>{competencyCount[key]}</Tag>
+              <Tag color={competencyColor[key]}>{key}</Tag>
+            </Tag.Group>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
