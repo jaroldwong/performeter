@@ -13,15 +13,11 @@ function reducer(state, action) {
   }
 }
 
-const localData = localStorage.getItem('performeter-app-state');
-const initialAppState = localData
-  ? JSON.parse(localData)
-  : {
-      activeTab: 'Job Functions',
-    };
-
 const AppContextProvider = (props) => {
-  const [appState, appDispatch] = useReducer(reducer, initialAppState);
+  const [appState, appDispatch] = useReducer(reducer, {}, () => {
+    const localData = localStorage.getItem('performeter-app-state');
+    return localData ? JSON.parse(localData) : { activeTab: 'Job Functions' };
+  });
 
   useEffect(() => {
     localStorage.setItem('performeter-app-state', JSON.stringify(appState));
