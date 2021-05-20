@@ -2,19 +2,17 @@ import React from 'react';
 import Goal from './Goal';
 import PropTypes from 'prop-types';
 
+import { Button, Heading } from 'react-bulma-components';
+
 const Goals = ({ goals, addGoal, updateGoal }) => {
   return (
     <>
-      <h1 className="title">
+      <Heading size={3}>
         Goals
-        <button
-          className="button"
-          style={{ marginLeft: '1em' }}
-          onClick={addGoal}
-        >
+        <Button style={{ marginLeft: '1em' }} onClick={addGoal}>
           Add Goal
-        </button>
-      </h1>
+        </Button>
+      </Heading>
       {goals.map((goal) => (
         <Goal
           key={goal.id}

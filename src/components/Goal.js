@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { Box, Form } from 'react-bulma-components';
+
 const Goal = ({ id, title, value, handleUpdate }) => {
   const [text, setText] = useState(value);
 
@@ -17,20 +19,18 @@ const Goal = ({ id, title, value, handleUpdate }) => {
   };
 
   return (
-    <div className="box">
-      <div className="field">
-        <label className="label">{title}</label>
-        <div className="control">
-          <textarea
-            name="goals"
-            className="textarea"
+    <Box>
+      <Form.Field>
+        <Form.Label>{title}</Form.Label>
+        <Form.Control>
+          <Form.Textarea
             placeholder="Plan out your future goals"
             value={text}
             onChange={handleChange}
-          ></textarea>
-        </div>
-      </div>
-    </div>
+          ></Form.Textarea>
+        </Form.Control>
+      </Form.Field>
+    </Box>
   );
 };
 

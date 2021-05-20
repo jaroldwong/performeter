@@ -1,6 +1,7 @@
 import React from 'react';
 import JobFunction from './JobFunction';
 import SupportingComment from './SupportingComment';
+import { Button, Heading } from 'react-bulma-components';
 
 const JobFunctions = ({
   jobFunctions,
@@ -12,16 +13,12 @@ const JobFunctions = ({
 }) => {
   return (
     <>
-      <h1 className="title">
+      <Heading size={3}>
         Job Functions
-        <button
-          className="button"
-          style={{ marginLeft: '1em' }}
-          onClick={addJobFunction}
-        >
+        <Button style={{ marginLeft: '1em' }} onClick={addJobFunction}>
           Add Job Function
-        </button>
-      </h1>
+        </Button>
+      </Heading>
 
       {jobFunctions.map((jobFunction) => (
         <JobFunction

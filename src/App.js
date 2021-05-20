@@ -2,7 +2,7 @@ import './App.css';
 
 import React, { useState, useEffect, useReducer, useContext } from 'react';
 import Header from './components/Header';
-import Tabs from './components/Tabs';
+import SectionTabs from './components/SectionTabs';
 import CompetencyCounter from './components/CompetencyCounter';
 import JobFunctions from './components/JobFunctions';
 import Achievements from './components/Achievements';
@@ -86,7 +86,7 @@ function App() {
             <CompetencyCounter comments={allComments} />
           </div>
           <div className="column is-three-quarters">
-            <Tabs activeTab={appState.activeTab} updateNav={updateNav} />
+            <SectionTabs activeTab={appState.activeTab} updateNav={updateNav} />
 
             {
               {

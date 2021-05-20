@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import IndicatorDropdown from './IndicatorDropdown';
 import InlineEditableContent from './InlineEditableContent';
-
 import { CORE_COMPETENCIES } from '../constants';
+import { Box, Button, Form } from 'react-bulma-components';
 
 const SupportingComment = ({
   competency,
@@ -50,24 +50,22 @@ const SupportingComment = ({
   };
 
   return (
-    <div className="box">
-      <button
-        className="delete is-danger"
+    <Box>
+      <Button
+        remove
         style={{ marginLeft: '99%', marginBottom: '.5rem' }}
         onClick={() => deleteComment()}
-      ></button>
+      ></Button>
       <div style={{ display: 'block' }}>
         In the competency of{' '}
-        <div className="select is-small">
-          <select defaultValue={competency} onChange={handleChange}>
-            <option value="Select">Select One</option>
-            {CORE_COMPETENCIES.map((competency) => (
-              <option value={competency} key={competency}>
-                {competency}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Form.Select size="small" value={competency} onChange={handleChange}>
+          <option value="Select">Select One</option>
+          {CORE_COMPETENCIES.map((competency) => (
+            <option value={competency} key={competency}>
+              {competency}
+            </option>
+          ))}
+        </Form.Select>
         , I{' '}
         {showIndicatorDropdown ? (
           <IndicatorDropdown
@@ -89,7 +87,7 @@ const SupportingComment = ({
           onChange={updateExample}
         />
       </div>
-    </div>
+    </Box>
   );
 };
 

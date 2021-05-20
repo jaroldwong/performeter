@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button, Heading, Navbar } from 'react-bulma-components';
+
 const exportText = ({ state, achievements, goals }) => {
   const jobFunctionsTitle = '<p><strong>Job Functions</strong></p>';
 
@@ -41,31 +43,26 @@ const exportText = ({ state, achievements, goals }) => {
 };
 
 const Header = ({ state, achievements, goals, resetData }) => (
-  <nav className="navbar is-light">
-    <div className="navbar-brand">
-      <a className="navbar-item" href="/">
-        <h1 className="title is-4">PerforMeter</h1>
-      </a>
-    </div>
+  <Navbar color="light">
+    <Navbar.Brand>
+      <Navbar.Item>
+        <Heading size={4}>PerforMeter</Heading>
+      </Navbar.Item>
+    </Navbar.Brand>
 
-    <div className="navbar-menu">
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <div className="buttons">
-            <button className="button is-danger" onClick={resetData}>
-              Reset
-            </button>
-            <button
-              className="button"
-              onClick={() => exportText({ state, achievements, goals })}
-            >
-              Export as Text
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+    <Navbar.Menu>
+      <Navbar.Container align="right">
+        <Button.Group>
+          <Button color="danger" onClick={resetData}>
+            Reset
+          </Button>
+          <Button onClick={() => exportText({ state, achievements, goals })}>
+            Export as Text
+          </Button>
+        </Button.Group>
+      </Navbar.Container>
+    </Navbar.Menu>
+  </Navbar>
 );
 
 Header.propTypes = {
