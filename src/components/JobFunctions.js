@@ -3,14 +3,36 @@ import JobFunction from './JobFunction';
 import SupportingComment from './SupportingComment';
 import { Button, Heading } from 'react-bulma-components';
 
-const JobFunctions = ({
-  jobFunctions,
-  addJobFunction,
-  addComment,
-  updateJobFunction,
-  updateComment,
-  deleteComment,
-}) => {
+const JobFunctions = ({ jobFunctions, dispatch }) => {
+  const addJobFunction = () => {
+    dispatch({ type: 'ADD_JOB_FUNCTION' });
+  };
+
+  const updateJobFunction = (id, event) => {
+    dispatch({
+      type: 'UPDATE_JOB_FUNCTION',
+      payload: { id, event },
+    });
+  };
+
+  const addComment = (id) => {
+    dispatch({ type: 'ADD_COMMENT', payload: { id } });
+  };
+
+  const updateComment = (jobFunctionId, commentIndex, newComment) => {
+    dispatch({
+      type: 'UPDATE_COMMENT',
+      payload: { jobFunctionId, commentIndex, newComment },
+    });
+  };
+
+  const deleteComment = (jobFunction, commentIndex) => {
+    dispatch({
+      type: 'DELETE_COMMENT',
+      payload: { jobFunction, commentIndex },
+    });
+  };
+
   return (
     <>
       <Heading size={3}>

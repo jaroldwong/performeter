@@ -21,6 +21,7 @@ const JobFunction = (props) => {
         <Form.Label>Percentage</Form.Label>
         <Form.Control>
           <Form.Select
+            name="percentage"
             size="small"
             value={percentage}
             onChange={props.updateJobFunction}

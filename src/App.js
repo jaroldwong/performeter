@@ -91,37 +91,7 @@ function App() {
             {
               {
                 'Job Functions': (
-                  <JobFunctions
-                    jobFunctions={state}
-                    addJobFunction={() =>
-                      dispatch({ type: 'ADD_JOB_FUNCTION' })
-                    }
-                    updateJobFunction={(id, event) =>
-                      dispatch({
-                        type: 'UPDATE_JOB_FUNCTION',
-                        payload: { id, event },
-                      })
-                    }
-                    addComment={(id) =>
-                      dispatch({ type: 'ADD_COMMENT', payload: { id } })
-                    }
-                    updateComment={(
-                      jobFunctionId,
-                      commentIndex,
-                      newComment
-                    ) => {
-                      dispatch({
-                        type: 'UPDATE_COMMENT',
-                        payload: { jobFunctionId, commentIndex, newComment },
-                      });
-                    }}
-                    deleteComment={(jobFunction, commentIndex) =>
-                      dispatch({
-                        type: 'DELETE_COMMENT',
-                        payload: { jobFunction, commentIndex },
-                      })
-                    }
-                  />
+                  <JobFunctions jobFunctions={state} dispatch={dispatch} />
                 ),
                 Achievements: (
                   <Achievements
