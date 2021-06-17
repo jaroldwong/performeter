@@ -5,13 +5,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import AppContextProvider from './contexts/AppContext';
+import GlobalContextProvider from './contexts/GlobalContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppContextProvider>
+    <GlobalContextProvider>
       <App />
-    </AppContextProvider>
+    </GlobalContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

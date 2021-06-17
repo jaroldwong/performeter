@@ -9,13 +9,16 @@ import Achievements from './components/Achievements';
 import Goals from './components/Goals';
 
 import jobFunctionReducer from './reducers/jobFunctionReducer';
-import { AppContext } from './contexts/AppContext';
+import { GlobalContext } from './contexts/GlobalContext';
 
 function App() {
   const initialState =
     JSON.parse(window.localStorage.getItem('performeter')) || {};
 
-  const { appState, appDispatch } = useContext(AppContext);
+  const globalStore = {
+    state: useContext(GlobalContext).state,
+    dispatch: useContext(GlobalContext).dispatch,
+  };
 
   const [state, dispatch] = useReducer(
     jobFunctionReducer,
@@ -28,6 +31,17 @@ function App() {
   const [goals, setGoals] = useState(initialState.goals || []);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:8080/posts');
+
+      // await only works inside async function
+      const data = await response.json();
+
+      console.log(data);
+    };
+
+    fetchData();
+
     const data = {
       jobFunctions: state,
       achievements,
@@ -60,14 +74,17 @@ function App() {
   };
 
   const updateNav = (e) => {
-    appDispatch({ type: 'SELECT_TAB', payload: { tab: e.target.innerText } });
+    globalStore.dispatch({
+      type: 'SELECT_TAB',
+      payload: { tab: e.target.innerText },
+    });
   };
 
   const resetData = () => {
     dispatch({ type: 'RESET_JOB_FUNCTIONS' });
     setAchievements('');
     setGoals([]);
-    appDispatch({ type: 'RESET_ACTIVE_TAB' });
+    globalStore.dispatch({ type: 'RESET_ACTIVE_TAB' });
   };
 
   const allComments = state.map((jobFunction) => jobFunction.comments).flat();
@@ -86,7 +103,10 @@ function App() {
             <CompetencyCounter comments={allComments} />
           </div>
           <div className="column is-three-quarters">
-            <SectionTabs activeTab={appState.activeTab} updateNav={updateNav} />
+            <SectionTabs
+              activeTab={globalStore.state.activeTab}
+              updateNav={updateNav}
+            />
 
             {
               {
@@ -106,7 +126,7 @@ function App() {
                     updateGoal={updateGoal}
                   />
                 ),
-              }[appState.activeTab]
+              }[globalStore.state.activeTab]
             }
           </div>
         </div>
