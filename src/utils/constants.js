@@ -27,7 +27,7 @@ export const BEHAVIORAL_INDICATORS = {
   'Problem Solving': [
     'evaluated the pros and cons, risks and benefits of different solutions',
     'prioritized opportunities and challenges in order to solve urgent, high impact problems',
-    'worked effectiviely with others to solve problems and make decisions',
+    'worked effectively with others to solve problems and make decisions',
     'sought input from partners',
   ],
   'Service Focus': [
@@ -45,7 +45,7 @@ export const BEHAVIORAL_INDICATORS = {
   Collaboration: [
     'cooperated with others',
     'shared information and knowledge to identify and implement solutions in which all parties can benefit',
-    'helped and supported fwllo employees in their work to contribute to overall success',
+    'helped and supported fellow employees in their work to contribute to overall success',
     'placed the needs of the team above self-interest',
     'built and maintained effective working relationships'
   ],
@@ -58,10 +58,10 @@ export const BEHAVIORAL_INDICATORS = {
   ],
   'Change Agility': [
     'adapted approaches as needed to address changing priorities',
-    'was flexible, open, and receiptive to new approaches',
+    'was flexible, open, and receptive to new approaches',
     'stepped outside of comfort zone',
     'sought to understand context while navigating through organizational change',
-    'recognized responses to change and responed in a way that is productive for the organization and team members'
+    'recognized responses to change and responded in a way that is productive for the organization and team members'
   ],
   'Mission and Vision Focus': [
     "used the organization's mission and vision as guideposts for decision-making",
@@ -69,9 +69,9 @@ export const BEHAVIORAL_INDICATORS = {
     'inspired others to achieve the mission and vision of the organization and the University'
   ],
   'Stewardship': [
-    'acted in a manner consistent with the UC Standrads of Ethical Conduct and other UC policies',
+    'acted in a manner consistent with the UC Standards of Ethical Conduct and other UC policies',
     'utilized available resources to achieve organizational goals',
-    'modeld accountability',
+    'modeled accountability',
     'understood and adhered to safety guidelines',
     'reported and corrected potential threats',
     'modeled safe behaviors'
