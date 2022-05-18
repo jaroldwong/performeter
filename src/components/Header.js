@@ -19,10 +19,10 @@ const exportText = ({ state, achievements, goals }) => {
   });
 
   const achievementsTitle = '<p><strong>Achievements</strong></p>';
-  const achievementsText = `${achievements}<br><br>`;
+  const achievementsText = `${achievements.replace(/\n/g, '<br>')}<br><br>`;
   const goalsTitle = '<p><strong>Goals</strong></p>';
   const goalsText = goals.map((goal) => {
-    return `${goal.title}<br> ${goal.value}`;
+    return `${goal.title}<br> ${goal.value.replace(/\n/g, '<br>')}`;
   });
 
   const combinedText = [
