@@ -36,6 +36,12 @@ export const BEHAVIORAL_INDICATORS = {
     'honored commitments and kept promises',
     'adapted service delivery to meet the needs of diverse client base'
   ],
+  'Belonging and Community': [
+    'engaged others in a way that makes them feel valued and accepted',
+    'valued diverse people, experiences and ideas',
+    'cultivated and maintained an environment of inclusion that empowers all team members to contribute ideas and achieve goals',
+    'treated all people with dignity, respect, and equity'
+  ],
   Collaboration: [
     'cooperated with others',
     'shared information and knowledge to identify and implement solutions in which all parties can benefit',
