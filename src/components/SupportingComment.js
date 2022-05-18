@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import IndicatorDropdown from './IndicatorDropdown';
 import InlineEditableContent from './InlineEditableContent';
-import { CORE_COMPETENCIES } from '../constants';
+import { CORE_COMPETENCIES } from '../utils/constants';
 import { Box, Button, Form } from 'react-bulma-components';
 
 const SupportingComment = ({

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import { BEHAVIORAL_INDICATORS } from '../constants';
+import { BEHAVIORAL_INDICATORS } from '../utils/constants';
 
 const IndicatorDropdown = ({ competency, indicator, onUpdate }) => {
   const [isActive, setIsActive] = useState(false);

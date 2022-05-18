@@ -4,18 +4,16 @@ import { Heading, Tag } from 'react-bulma-components';
 
 const CompetencyCounter = ({ comments }) => {
   let competencyCount = {
-    Communication: 0,
-    'Decision Making': 0,
-    'Diversity, Equity, Inclusion': 0,
-    'Health and Safety': 0,
-    Leadership: 0,
-    'Problem Solving and Innovation': 0,
-    'Quality Improvement': 0,
+    'Continuous Improvement': 0,
+    'Continuous Learning': 0,
+    'Problem Solving': 0,
     'Service Focus': 0,
-    'Stewardship and Managing Resources': 0,
-    'Strategic Planning': 0,
-    Teamwork: 0,
-    'Managing People (Supervisors)': 0,
+    'Belonging and Community': 0,
+    'Collaboration': 0,
+    'Communication': 0,
+    'Change Agility': 0,
+    'Mission and Vision Focus': 0,
+    'Stewardship': 0
   };
 
   competencyCount = comments.reduce((acc, current) => {
