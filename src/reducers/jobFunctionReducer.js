@@ -67,7 +67,12 @@ export default function jobFunctionReducer(state, action) {
       });
     }
     case 'DELETE_COMMENT': {
+      // debugger;
       const { jobFunction, commentIndex } = action.payload;
+
+      // const { [commentIndex]: removed, ...remainingComments } =
+      //   jobFunction.comments;
+
       const filteredComments = jobFunction.comments.filter(
         (_, index) => index !== commentIndex
       );

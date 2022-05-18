@@ -31,16 +31,16 @@ function App() {
   const [goals, setGoals] = useState(initialState.goals || []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:8080/posts');
+    // const fetchData = async () => {
+    //   const response = await fetch('http://localhost:8080/posts');
 
-      // await only works inside async function
-      const data = await response.json();
+    //   // await only works inside async function
+    //   const data = await response.json();
 
-      console.log(data);
-    };
+    //   console.log(data);
+    // };
 
-    fetchData();
+    // fetchData();
 
     const data = {
       jobFunctions: state,
